@@ -10,9 +10,15 @@ pipeline {
             }
         }
 	stage('Test') {
-            steps {
+             steps {
                 sh 'chmod +x start.sh'
                 sh 'bash start.sh'
+            }
+        }
+	stage('Creating_artifacts') {
+            steps {
+                sh 'chmod +x artifact.sh'
+                sh 'bash artifact.sh'
             }
         }
 
