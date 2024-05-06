@@ -9,25 +9,20 @@ pipeline {
                 sh 'bash build.sh'
             }
         }
-	stage('Test') {
+	stage('Artifact_Generator') {
+            steps {
+                sh 'chmod +x artifact.sh'
+                sh 'bash artifact.sh'
+            }
+	}	
+	stage('Test_&_Deploy') {
              steps {
                 sh 'chmod +x start.sh'
                 sh 'bash start.sh'
             }
         }
-	stage('Creating_artifacts') {
-            steps {
-                sh 'chmod +x artifact.sh'
-                sh 'bash artifact.sh'
-            }
-        }
 
     }
-   post {
-       always {
-       archiveArtifacts artifacts: 'dist/*.tar.gz', fingerprint: true
-    }
-  }
 
 }
 
